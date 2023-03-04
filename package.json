@@ -12,6 +12,9 @@
   "dependencies": {
     "@types/node": "^18.0.6",
     "discord.js": "^12.5.3",
-    "node-fetch": "^3.2.6"
+    "google-images": "^2.1.0",
+    "googleapis": "^112.0.0",
+    "node-fetch": "^3.2.6",
+    "random": "^4.1.0"
   }
 }
