@@ -12,7 +12,7 @@ const client = new Discord.Client() //Declaring Discord Client
 
 //Google
 const GoogleImages = require('google-images');
-const googleClient = new GoogleImages('515e1c56003f440b1', 'AIzaSyA0ERnbSiIXyOhw7tBQ4l5rPDLEqiHV9I0');
+const googleClient = new GoogleImages(process.env['GoogleSearchEngineId'], process.env['GoogleAPIKey']);
 
 //Delete message from a specific user!
 
