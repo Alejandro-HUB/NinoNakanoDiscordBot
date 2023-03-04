@@ -37,29 +37,61 @@ client.on('message', async message => { //making an event
     message.channel.send(`${message.author} 5 Seconds remaining until the message gets deleted.`)
   }
   //Google API Logic
-  else if (cleanMessage.includes('%nino')) {
-
-    try {
-      googleClient.search('nino nakano').then(images => {
-        //Get a random image from the returned list
-        var randIndex = Math.floor(Math.random() * images.length);
-
-        //Embed the image to a message
-        const embed = new Discord.MessageEmbed()
-          .attachFiles([{ name: 'file.jpg', attachment: images[randIndex].url.toString() }])
-          .setImage('attachment://file.jpg');
-        message.channel.send(embed);
-      });
-    } catch (err) {
-      console.log(err)
-    }
-
+  else if (cleanMessage == '%nino') {
+    searchGoogle('nino nakano', message);
+  }
+  else if (cleanMessage == '%quints') {
+    searchGoogle('quintessential quintuplets', message)
+  }
+  else if (cleanMessage == '%yotsuba') {
+    searchGoogle('yotsuba nakano', message)
+  }
+  else if (cleanMessage == '%itsuki') {
+    searchGoogle('itsuki nakano', message)
+  }
+  else if (cleanMessage == '%ichika') {
+    searchGoogle('ichika nakano', message)
+  }
+  else if (cleanMessage == '%miku') {
+    searchGoogle('miku nakano', message)
+  }
+  //Help Response
+  else if (cleanMessage == '%help') {
+    message.channel.send(':wave: Hello! I was created to filter Mudae bot\'s messages.\n\n'
+      + ':computer: List of Available Commands:\n\n'
+      + ':information_source: %help: Confused? Ask for help!\n'
+      + ':cowboy: %nino: returns random images of myself, Nino!\n'
+      + ':medal: %yotsuba: returns random images of my sister, Yotsuba!\n'
+      + ':hamburger: %itsuki: returns random images of my sister, Itsuki!\n'
+      + ':cinema: %ichika: returns random images of my sister, Ichika!\n'
+      + ':crossed_swords: %miku: returns random images of my sister, Miku!\n'
+      + ':family_woman_girl_girl: %quints: returns random images of my sisters and I.\n\n'
+      + 'BAKA! It\'s not like a like you or anything.')
   }
   //Delete the bot's message
-  else if (message.author.id == bot && message.embeds.length == 0) {
+  else if (message.author.id == bot
+    && message.embeds.length == 0
+    && !cleanMessage.includes('returns random images of myself')) {
     message.delete({ timeout: 5000 })
   }
 })
+
+function searchGoogle(keyword, message) {
+  try {
+    googleClient.search(keyword).then(images => {
+      //Get a random image from the returned list
+      var randIndex = Math.floor(Math.random() * images.length);
+
+      //Embed the image to a message
+      const embed = new Discord.MessageEmbed()
+        .attachFiles([{ name: 'file.jpg', attachment: images[randIndex].url.toString() }])
+        .setImage('attachment://file.jpg');
+      message.channel.send(embed);
+    });
+  } catch (err) {
+    console.log(err)
+  }
+}
 
 //Define token in secrets tab
 const token = process.env['token']
