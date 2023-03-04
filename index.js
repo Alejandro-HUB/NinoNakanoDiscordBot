@@ -4,31 +4,37 @@ Then paste this code and replace the target user ID and target word
 Then run the project
 For any quories contact- https://dsc.bio/alonearif
 */
-
+//
 const Discord = require('discord.js') //Declaring Discord
 const client = new Discord.Client() //Declaring Discord Client
 
 //Delete message from a specific user!
 
-const target = '157666307188326400' //Replace the target user ID
+const targets = ["794773955910959105", "157666307188326400", "432610292342587392"]; //Replace the target user ID
+const bot = "1076973319355637811"
+const words = ["Each kakera reaction consumes 100% of your reaction power.", "Upvote Mudae to reset the timer: $vote.", "Next $dk reset in", "\✅", "You are not married to", "Syntax:", "no character found.", "the roulette is limited to" ] 
+
+
 
 client.on('message', async message => { //making an event
-  if(message.author.id === target) { //declearing the specific user
-    message.delete() //If you want to delete the message after a specific time then use message.delete({ timeout: 1000 }) //1000ms = 1 second
-    message.channel.send(`${message.author} Nino Bot Test. Message Deleted After 1 second.`) //If you want to send any message after deleting the message or to DM the user use message.author.send('message')
+  cleanMessage = message.content.toLowerCase()
+  console.log(cleanMessage)
+  
+  var containsMessage = words.some(element => {
+  return cleanMessage.includes(element.toLowerCase());
+});
+  
+  if(targets.includes(message.author.id) && containsMessage) {
+    message.delete({ timeout: 5000 })  
+    message.channel.send(`${message.author} 5 Seconds remaining until the message gets deleted.`)
   }
-})
-
-//Delete message which contains a specific word!
-
-const word = 'pizza' //The word that triggers this event.
-
-client.on('message', async message => { //making an event
-  if(message.content.toLowerCase().includes(word)) { //declearing the specific word
-    message.delete({ timeout: 1000 }) //If you want to delete the message after a specific time then use message.delete({ timeout: 1000 }) //1000ms = 1 second
+  else if(message.author.id == bot)
+  {
+    message.delete({ timeout: 5000 })  
   }
 })
 
 //Define token in secrets tab
 const token = process.env['token']
 client.login(token)
+ 
