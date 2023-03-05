@@ -12,7 +12,7 @@ const client = new Discord.Client() //Declaring Discord Client
 
 //Google
 const GoogleImages = require('google-images');
-const googleClient = new GoogleImages(process.env['GoogleSearchEngineId'], process.env['GoogleAPIKey']);
+const googleClient = new GoogleImages('515e1c56003f440b1', 'AIzaSyA0ERnbSiIXyOhw7tBQ4l5rPDLEqiHV9I0');
 
 //Delete message from a specific user!
 
@@ -66,7 +66,7 @@ client.on('message', async message => { //making an event
       + ':cinema: %ichika: returns random images of my sister, Ichika!\n'
       + ':crossed_swords: %miku: returns random images of my sister, Miku!\n'
       + ':family_woman_girl_girl: %quints: returns random images of my sisters and I.\n\n'
-      + 'BAKA! It\'s not like a like you or anything.')
+      + 'BAKA! It\'s not like I like you or anything.')
   }
   //Delete the bot's message
   else if (message.author.id == bot
