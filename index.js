@@ -18,7 +18,7 @@ const googleClient = new GoogleImages('515e1c56003f440b1', 'AIzaSyA0ERnbSiIXyOhw
 
 const targets = ["794773955910959105", "157666307188326400", "432610292342587392"]; //Replace the target user ID
 const bot = "1076973319355637811"
-const words = ["Each kakera reaction consumes 100% of your reaction power.", "Upvote Mudae to reset the timer: $vote.", "Next $dk reset in", "\✅", "You are not married to", "Syntax:", "no character found.", "the roulette is limited to", "DM sent!", "Kakera rewards", "This will remove the character from your harem", "How to collect kakera in your server", "You can restart your tower and be refunded with $destroy", "Next rolls reset in", "Unlock the full capacities of your waifu/husbando!", "I am unable to send the message, please check your privacy settings for this server.", "How to collect kakera in your server"]
+const words = ["Each kakera reaction consumes 100% of your reaction power.", "Upvote Mudae to reset the timer: $vote.", "Next $dk reset in", "\✅", "You are not married to", "Syntax:", "no character found.", "the roulette is limited to", "DM sent!", "Kakera rewards", "This will remove the character from your harem", "How to collect kakera in your server", "You can restart your tower and be refunded with $destroy", "Next rolls reset in", "Unlock the full capacities of your waifu/husbando!", "I am unable to send the message, please check your privacy settings for this server.", "How to collect kakera in your server", "you can't react to kakera for", "you can claim right now!", "you can't claim for another", "Your likelist must have at least 5 characters", "Your rolls are already reset"]
 
 
 
@@ -78,7 +78,9 @@ client.on('message', async message => { //making an event
 
 function searchGoogle(keyword, message) {
   try {
-    googleClient.search(keyword).then(images => {
+    var randPage = Math.floor(Math.random() * 6);
+    console.log(randPage);
+    googleClient.search(keyword, { page: randPage }).then(images => {
       //Get a random image from the returned list
       var randIndex = Math.floor(Math.random() * images.length);
 
