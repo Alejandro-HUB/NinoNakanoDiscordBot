@@ -79,7 +79,6 @@ client.on('message', async message => { //making an event
 function searchGoogle(keyword, message) {
   try {
     var randPage = Math.floor(Math.random() * 6);
-    console.log(randPage);
     googleClient.search(keyword, { page: randPage }).then(images => {
       //Get a random image from the returned list
       var randIndex = Math.floor(Math.random() * images.length);
